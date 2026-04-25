@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Symptoms</title>
+
+<script>
+
+function analyze(){
+
+let params=new URLSearchParams(window.location.search)
+
+let name=params.get("name")
+let age=params.get("age")
+
+let s1=document.getElementById("s1").value
+let s2=document.getElementById("s2").value
+
+window.location.href="result.html?name="+name+"&age="+age+"&s1="+s1+"&s2="+s2
+
+}
+
+</script>
+
+<style>
+body{text-align:center;font-family:Arial;margin-top:100px;background:#f4f4f4}
+input{padding:12px;margin:7px;width:300px}
+button{padding:12px 25px;background:#0077b6;color:white;border:none;border-radius:6px}
+</style>
+
+</head>
+
+<body>
+
+<h2>Enter Symptoms</h2>
+
+<input id="s1" placeholder="Symptom 1"><br>
+<input id="s2" placeholder="Symptom 2"><br>
+<h4>&nbsp;<h/>
+<button onclick="analyze()">Analyze Disease</button>
+
+</body>
+</html>

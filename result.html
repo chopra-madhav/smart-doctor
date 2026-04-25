@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Disease Result</title>
+
+<style>
+body{text-align:center;font-family:Arial;background:#e6f7ff;margin-top:60px}
+img{width:200px;margin:20px}
+button{padding:12px 25px;background:#0077b6;color:white;border:none;border-radius:6px}
+</style>
+
+
+</head>
+
+<body>
+
+<div id="output"></div>
+
+<button onclick="goBill()">Generate Conclusion Bill</button>
+
+<script>
+    let params = new URLSearchParams(window.location.search)
+
+    let name = params.get("name")
+    let age = params.get("age")
+    let s1 = params.get("s1").toLowerCase()
+    let s2 = params.get("s2").toLowerCase()
+
+    let disease = "No disease found";
+
+    async function getDisease() {
+        try {
+            let res = await fetch("http://127.0.0.1:8000/diagnose", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    patient_name: name,
+                    patient_age: age,
+                    symptoms: [s1, s2]
+                })
+            })
+
+            let data = await res.json()
+
+           disease = data.disease || "No disease found"
+
+            document.getElementById("output").innerHTML =
+                "<h3>Disease: " + disease + "</h3>" 
+
+        } catch (error) {
+            console.error(error)
+            document.getElementById("output").innerHTML =
+                "<h3>Error connecting to server</h3>"
+        }
+    }
+
+    getDisease()
+
+    function goBill() {
+        window.location.href =
+            "bill.html?name=" + name + "&age=" + age + "&s1=" + s1 + "&s2=" + s2+"&disease="+  disease
+    }
+
+    function goEffects() {
+        window.location.href =
+            "effects.html?name=" + name + "&age=" + age + "&s1=" + s1 + "&s2=" + s2
+    }
+</script>
+   
+
+</body>
+</html>

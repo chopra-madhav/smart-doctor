@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Disease Effects</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef6ff;
+text-align:center;
+margin-top:60px;
+}
+
+.container{
+background:white;
+width:600px;
+margin:auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+img{
+width:220px;
+margin:15px;
+border-radius:10px;
+}
+
+button{
+padding:12px 25px;
+background:#0077b6;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:20px;
+}
+
+ul{
+text-align:left;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>How This Disease Affects You</h2>
+
+<div id="content"></div>
+
+<button onclick="goBill()">Generate Final Conclusion Bill</button>
+
+</div>
+
+<script>
+
+let params=new URLSearchParams(window.location.search)
+
+let name=params.get("name")
+let age=params.get("age")
+let s1=params.get("s1")
+let s2=params.get("s2")
+let disease=params.get("disease")
+
+let info={
+
+"common cold":{
+image:"https://upload.wikimedia.org/wikipedia/commons/7/7c/Common_cold.jpg",
+effects:"Cold mainly affects the nose, throat and respiratory system causing sneezing, congestion and mild fatigue.",
+prevention:[
+"Drink warm fluids",
+"Take proper rest",
+"Wash hands frequently",
+"Maintain strong immunity"
+]
+},
+
+"diabetes":{
+image:"https://upload.wikimedia.org/wikipedia/commons/9/9a/Blood_glucose_testing.JPG",
+effects:"Diabetes increases blood sugar levels and can affect the heart, kidneys, nerves and eyes if not controlled.",
+prevention:[
+"Control sugar intake",
+"Exercise regularly",
+"Maintain healthy weight",
+"Monitor blood sugar levels"
+]
+},
+
+"arthritis":{
+image:"https://upload.wikimedia.org/wikipedia/commons/7/70/Arthritis.jpg",
+effects:"Arthritis affects joints causing pain, swelling and stiffness which reduces mobility.",
+prevention:[
+"Regular light exercise",
+"Maintain healthy body weight",
+"Take calcium rich foods",
+"Protect joints from injury"
+]
+}
+
+}
+
+let data=info[disease]
+
+let list=""
+
+if(data){
+
+for(let item of data.prevention){
+
+list+="<li>"+item+"</li>"
+
+}
+
+document.getElementById("content").innerHTML=
+
+"<h3>"+disease+"</h3>"+
+"<img src='"+data.image+"'>"+
+"<p><b>Effects on Body:</b> "+data.effects+"</p>"+
+"<h4>Prevention Tips</h4>"+
+"<ul>"+list+"</ul>"
+
+}
+
+function goBill(){
+
+window.location.href="bill.html?name="+name+"&age="+age+"&s1="+s1+"&s2="+s2+"&disease="+disease
+
+}
+
+</script>
+
+</body>
+</html>

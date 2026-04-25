@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patient Data</title>
+
+<script>
+
+function startProcess(){
+
+let name=document.getElementById("name").value
+let age=document.getElementById("age").value
+
+window.location.href="symptoms.html?name="+name+"&age="+age
+
+}
+
+</script>
+
+<style>
+body{font-family:Arial;text-align:center;margin-top:120px;background:#e6f7ff}
+input{padding:20px;margin:10px;width:250px}
+button{padding:12px 25px;background:#0077b6;color:white;border:none;border-radius:6px}
+</style>
+
+</head>
+
+<body>
+
+<h1>Enter Patient Details</h1>
+
+<input id="name" placeholder="Patient Name"><br>
+<input id="age" placeholder="Age"><br>
+<input id="Contact" placeholder="Contact Number"><br>
+<input id="Emergency Contact Number" placeholder="Emergency Contact Number"><br>
+
+<button onclick="startProcess()">Start</button>
+
+</body>
+</html>
