@@ -31,7 +31,7 @@ button{padding:12px 25px;background:#0077b6;color:white;border:none;border-radiu
 
     async function getDisease() {
         try {
-            let res = await fetch("http://127.0.0.1:8000/diagnose", {
+            let res = await fetch("https://smart-doctor-backend-1.onrender.com", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
